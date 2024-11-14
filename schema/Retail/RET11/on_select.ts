@@ -91,7 +91,17 @@ export const FnBonSelectSchema = {
                     type: 'string',
                   },
                   fulfillment_id: {
-                    type: 'string',
+                    type: "string",
+                    minLength: 1,
+                  },
+                  fulfillment_ids: {
+                    type: "array",
+                    items: {
+                      type: "string",
+                      minLength: 1,
+                    },
+                    minItems: 1,
+                    uniqueItems: true
                   },
                   parent_item_id: {
                     type: 'string',
@@ -130,7 +140,11 @@ export const FnBonSelectSchema = {
                     },
                   },
                 },
-                required: ['id', 'fulfillment_id'],
+                oneOf: [
+                  { required: ["fulfillment_id"] },
+                  { required: ["fulfillment_ids"] }
+                ],
+                required: ['id'],
               },
             },
             fulfillments: {

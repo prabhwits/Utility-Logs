@@ -1,4 +1,5 @@
 import { combinedCategory } from '../../../utils/enum'
+import { type_check, np_fees_check } from '../Shared/on_search'
 
 export const onSearchSchema = {
   type: 'object',
@@ -234,6 +235,10 @@ export const onSearchSchema = {
                   id: {
                     type: 'string',
                   },
+                  rating: {
+                    type: 'string',
+                    pattern : '^[1-5]$'
+                  },
                   time: {
                     type: 'object',
                     properties: {
@@ -428,7 +433,7 @@ export const onSearchSchema = {
                       properties: {
                         id: {
                           type: 'string',
-                          pattern:'^[a-zA-Z0-9-]{12}$'
+                          pattern: '^[a-zA-Z0-9-]{12}$',
                         },
                         descriptor: {
                           type: 'object',
@@ -459,6 +464,7 @@ export const onSearchSchema = {
                             properties: {
                               code: {
                                 type: 'string',
+                                enum: ['type', 'attr', 'np_fees', 'display', 'config'],
                               },
                               list: {
                                 type: 'array',
@@ -476,6 +482,7 @@ export const onSearchSchema = {
                                 },
                               },
                             },
+                            allOf: [type_check, np_fees_check],
                             required: ['code', 'list'],
                           },
                         },
@@ -489,7 +496,11 @@ export const onSearchSchema = {
                       type: 'object',
                       properties: {
                         id: {
-                          type: 'string'
+                          type: 'string',
+                        },
+                        rating: {
+                          type: 'string',
+                          pattern : '^[1-5]$'
                         },
                         time: {
                           type: 'object',
@@ -722,6 +733,7 @@ export const onSearchSchema = {
                                 },
                               },
                             },
+                            allOf: [np_fees_check],
                             required: ['code', 'list'],
                             if: {
                               type: 'object',
@@ -1149,6 +1161,7 @@ export const onSearchSchema = {
                             },
                           },
                         },
+                        np_fees_check
                       ],
                     },
                   },

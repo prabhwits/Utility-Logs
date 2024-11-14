@@ -817,7 +817,7 @@ export const checkOnCancel = (data: any, msgIdSet: any) => {
         if (!cancel_request.length) {
           logger.error(`Cancel Request is mandatory for ${constants.ON_CANCEL}`)
           const key = `missingCancelRequest`
-          onCnclObj[key] = `Cancel Request is mandatory for ${constants.ON_CANCEL} in fulfillment type delivery`
+          onCnclObj[key] = `cancel_request is mandatory for ${constants.ON_CANCEL} in fulfillment type delivery`
         } else {
           cancel_request.forEach((tag: any) => {
             if (!tag.list) {
