@@ -693,7 +693,7 @@ export const checkOnStatusRTODelivered = (data: any) => {
                 if (!cancel_request.length) {
                     logger.error(`Cancel Request is mandatory for ${constants.ON_STATUS_RTO_DELIVERED}`)
                     const key = `missingCancelRequest`
-                    onStatusRtoObj[key] = `Cancel Request is mandatory for ${constants.ON_STATUS_RTO_DELIVERED} in fulfillment type delivery`
+                    onStatusRtoObj[key] = `cancel_request is mandatory for ${constants.ON_STATUS_RTO_DELIVERED} in fulfillment type delivery`
                 } else {
                     cancel_request.forEach((tag: any) => {
                         if (!tag.list) {

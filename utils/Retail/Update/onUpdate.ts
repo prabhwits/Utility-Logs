@@ -423,7 +423,7 @@ export const checkOnUpdate = (data: any, msgIdSet: any, apiSeq: any, settlementD
                         }
                     })
                     if (!cancelRequestPresent) {
-                        onupdtObj['cancelRequest'] = `Cancel request is not present in the 'Cancel' fulfillment`
+                        onupdtObj['cancelRequest'] = `cancel_request is not present in the 'Cancel' fulfillment`
                     }
                 } catch (error: any) {
                     logger.error(`!!Error while mapping cancellation_reason_id in ${apiSeq}`)

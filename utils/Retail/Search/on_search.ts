@@ -761,12 +761,13 @@ export const checkOnsearch = (data: any) => {
                     !(
                       codeList.value === 'custom_menu' ||
                       codeList.value === 'custom_group' ||
-                      codeList.value === 'variant_group'
+                      codeList.value === 'variant_group'||
+                      codeList.value === 'category'
                     )
                   ) {
                     const key = `prvdr${i}category${j}tags${index}`
                     errorObj[key] =
-                      `list.code == type then value should be one of 'custom_menu','custom_group' and 'variant_group' in bpp/providers[${i}]`
+                      `list.code == type then value should be one of 'custom_menu','custom_group', 'variant_group' and 'category' in bpp/providers[${i}]`
                   }
 
                   if (codeList.value === 'custom_group') {

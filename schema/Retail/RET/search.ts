@@ -1,3 +1,5 @@
+import { EnhancedCode } from "../../../constants"
+
 export const searchSchema = {
   type: 'object',
   properties: {
@@ -148,7 +150,7 @@ export const searchSchema = {
                 properties: {
                   code: {
                     type: 'string',
-                    enum: ['catalog_inc', 'bap_terms'],
+                    enum: ['catalog_inc', 'bap_terms', 'bap_features'],
                   },
                   list: {
                     type: 'array',
@@ -164,11 +166,37 @@ export const searchSchema = {
                             'static_terms',
                             'effective_date',
                             'static_terms_new',
+                            ...EnhancedCode
                           ],
                         },
                         value: {
-                          type: 'string',
+                          type: 'string'
                         },
+                      },
+                      if: {
+                        properties: {
+                          code: {
+                            enum: Object.values(EnhancedCode)
+                          }
+                        }
+                      },
+                      then: {
+                        properties: {
+                          value: {
+                            enum: ['yes', 'no']
+                          }
+                        }, errorMessage: {
+                          properties: {
+                            value: 'Value must be "yes" or "no" when code is of type EnhancedCode.'
+                          }
+                        }
+                      },
+                      else: {
+                        properties: {
+                          value: {
+                            type: 'string'
+                          }
+                        }
                       },
                       required: ['code', 'value'],
                     },
